@@ -4,7 +4,7 @@
 
 The **SLADKG** project is implemented using Python 3.10.12 and integrates the Tongsuo cryptographic library for secure cryptographic primitives. The following provides an overview of the project structure, dependencies, and usage instructions.
 
-> **Note**: This repository is not a complete implementation. The code will be updated after organization and refinement.
+> **Note**: This repository is not a complete implementation, but the correctness of the technology can be verified. The code will be updated after organization and refinement.
 
 ## Quick Start
 
@@ -104,42 +104,25 @@ This repository contains multiple implementations related to distributed key gen
 ├── README.md           # This file - project documentation
 │
 ├── SLADKG/             # Signature-free Lattice-Based DKG implementation
-│   ├── SLACSS.py       # Main DKG protocol implementation
-│   ├── tongsuo.py      # Tongsuo cryptographic primitives wrapper
-│   ├── secure_rng.py   # Secure random number generation
-│   ├── Tongsuo/        # Tongsuo library directory (cloned separately)
-│   │   └── libcrypto.so # Compiled Tongsuo library (or .dylib/.dll)
-│   ├── tools/          # Utility tools
-│   ├── log/            # Runtime logs directory (auto-generated)
-│   ├── README.md       # SLADKG-specific documentation
-│   └── license         # License file
+│   ├── ...
+│   └── README.md       # SLADKG-specific documentation
 │
 ├── ADKG/               # Asynchronous Distributed Key Generation BaseLine
-│   ├── adkg/           # Core ADKG implementation modules
-│   ├── apps/           # Application examples and tutorials
-│   ├── benchmark/      # Performance benchmarks
-│   ├── conf/           # Configuration files
-│   ├── pairing/        # Pairing-based cryptography (Rust bindings)
-│   ├── aws/            # AWS deployment scripts
-│   ├── Dockerfile      # Docker configuration
+│   ├── ...
 │   └── README.md       # ADKG-specific documentation
 │
 ├── MVBA/               # Multi-Valued Byzantine Agreement
 │   ├── beat/           # BEAT protocol implementation
-│   │   ├── BEAT0/      # BEAT core modules
-│   │   │   └── BEAT/   # Main BEAT implementation
+│   │   ├── ...
 │   │   └── README.md   # BEAT documentation
 │   └── README.md       # MVBA documentation
 │
 ├── NIZK/               # Non-Interactive Zero-Knowledge proofs
-│   ├── proving_mlwe_sample.py      # MLWE sample proof implementation
-│   ├── proving_mlwe_sample.sage.py # SageMath variant
+│   ├── ...
 │   └── README.md       # NIZK documentation
 │
 └── OPRBC/              # Optimistic Reliable Broadcast protocols
-    ├── RBC.py          # Bracha Reliable Broadcast implementation
-    ├── OPRBC.py        # Optimistic Reliable Broadcast implementation
-    ├── run_tests.py    # Test runner
+    ├── ...
     └── README.md       # OPRBC documentation
 ```
 
@@ -217,6 +200,12 @@ The implementation includes built-in performance monitoring that tracks:
 This project makes use of the following open-source libraries and implementations:
 
 - [Tongsuo Project](https://github.com/Tongsuo-Project/Tongsuo) - Cryptographic library providing AES-GCM, Ed25519, X25519, and HKDF primitives
+- [LBZKP](https://github.com/khanhcrypto/LBZKP) - Lattice-Based Zero-Knowledge Proofs implementation used by the NIZK module
+- [BEAT](https://github.com/fififish/beat/tree/master/BEAT0/BEAT) - BEAT protocol implementation used by the MVBA module
+- [ReliableBroadcast](https://github.com/trevoraron/ReliableBroadcast) - Bracha Broadcast algorithm implementation used by the OPRBC module
+- [ADKG](https://github.com/sourav1547/adkg) - Asynchronous Distributed Key Generation baseline implementation used by the ADKG module
+
+
 
 ## License
 

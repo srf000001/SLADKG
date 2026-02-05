@@ -1,0 +1,16 @@
+{
+  "CN": "massl",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C":  "US",
+      "L":  "San Francisco",
+      "O":  "TrevCorpEnterprises, Inc.",
+      "OU": "R & D",
+      "ST": "California"
+    }
+  ]
+}
