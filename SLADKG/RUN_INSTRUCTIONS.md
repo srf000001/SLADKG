@@ -7,7 +7,7 @@
 在 WSL 终端中执行：
 
 ```bash
-cd /mnt/g/2026/0127DSN-USENIX/Paper/仓库/SLACSS
+cd /mnt/g/2026/0127DSN-USENIX/Paper/仓库/SLADKG
 bash install_dependencies.sh
 ```
 
@@ -22,7 +22,7 @@ bash run_dkg.sh
 或者直接运行：
 
 ```bash
-python3 V3S_DKG.py
+python3 SLACSS.py
 ```
 
 ## 手动安装依赖

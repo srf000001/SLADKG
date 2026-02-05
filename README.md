@@ -4,6 +4,8 @@
 
 The **SLADKG** project is implemented using Python 3.10.12 and integrates the Tongsuo cryptographic library for secure cryptographic primitives. The following provides an overview of the project structure, dependencies, and usage instructions.
 
+> **Note**: This repository is not a complete implementation. The code will be updated after organization and refinement.
+
 ## Quick Start
 
 ### Prerequisites
@@ -16,7 +18,7 @@ The **SLADKG** project is implemented using Python 3.10.12 and integrates the To
 
 1. **Clone Tongsuo Project**:
    ```bash
-   cd SLACSS
+   cd SLADKG
    git clone https://github.com/Tongsuo-Project/Tongsuo.git
    cd Tongsuo
    # Build and install Tongsuo according to its documentation
@@ -31,7 +33,7 @@ The **SLADKG** project is implemented using Python 3.10.12 and integrates the To
 3. **Set Tongsuo Library Path** (if needed):
    ```bash
    export TONGSUO_LIBCRYPTO_PATH=/path/to/Tongsuo/libcrypto.so
-   # Or place libcrypto.so in SLACSS/Tongsuo/
+   # Or place libcrypto.so in SLADKG/Tongsuo/
    ```
 
 ### Running the DKG Protocol
@@ -39,15 +41,15 @@ The **SLADKG** project is implemented using Python 3.10.12 and integrates the To
 Run the distributed key generation protocol:
 
 ```bash
-cd SLACSS
-python3 V3S_DKG.py
+cd SLADKG
+python3 SLACSS.py
 ```
 
 The program will execute a complete DKG protocol with the default parameters and output detailed logs to the `log/` directory.
 
 ### Configuration Parameters
 
-The default protocol parameters can be adjusted in `V3S_DKG.py` within the `test_distributed_v3s()` function:
+The default protocol parameters can be adjusted in `SLACSS.py` within the `test_distributed_v3s()` function:
 
 ```python
 num_participants = 6      # Number of participants (N)
@@ -58,11 +60,18 @@ sigma_y = 18.36          # Standard deviation for noise (√337 × sigma_x)
 slack_factor = 10.0      # Verification bound slack factor
 ```
 
-**Algebraic Setting:**
+**Parameter Set A (default):**
 - Base ring R_q: ℤ_q[X]/(X^8+1)
 - Modulus q: 12289
 - Ring dimension n: 8
 - Module rank k (d): 4
+
+**Parameter Set B:**
+- Base ring R_q: ℤ_q[X]/(X^256+1)
+- Modulus q: 2^32 - 99 (= 4294967197)
+- Ring dimension n: 256
+
+> **Note**: Parameter Set B is documented but requires code modifications (e.g., updating `RING_DEGREE` and `PRIME` constants) to use. See `SLADKG/README.md` for details.
 
 **Encryption:**
 - X25519 KEM + AES-256-GCM
@@ -70,12 +79,13 @@ slack_factor = 10.0      # Verification bound slack factor
 
 ## Project Overview
 
-The implementation consists of several core components:
+This repository contains multiple implementations related to distributed key generation and cryptographic protocols:
 
-- **V3S_DKG.py** - Main DKG protocol implementation
-- **tongsuo.py** - Tongsuo cryptographic library bindings (AES-GCM, Ed25519, X25519, HKDF)
-- **secure_rng.py** - Cryptographically secure random number generation utilities
-- **Tongsuo/** - Tongsuo cryptographic library directory
+- **SLADKG/** - Signature-free Lattice-Based Distributed Key Generation implementation
+- **ADKG/** - Asynchronous Distributed Key Generation protocol based on SM2 elliptic curve
+- **MVBA/** - Multi-Valued Byzantine Agreement implementation
+- **NIZK/** - Non-Interactive Zero-Knowledge proof implementations for MLWE samples
+- **OPRBC/** - Optimistic Reliable Broadcast and RBC (Bracha Reliable Broadcast) protocols
 
 ### Key Features
 
@@ -89,16 +99,48 @@ The implementation consists of several core components:
 ## Project Structure
 
 ```
-SLACSS/
+仓库/
 │
-├── V3S_DKG.py          # Main DKG protocol implementation
-├── tongsuo.py          # Tongsuo cryptographic primitives wrapper
-├── secure_rng.py       # Secure random number generation
-├── Tongsuo/            # Tongsuo library directory (cloned separately)
-│   └── libcrypto.so    # Compiled Tongsuo library (or .dylib/.dll)
-├── log/                # Runtime logs directory (auto-generated)
-├── README.md           # Project documentation
-└── license             # License file
+├── README.md           # This file - project documentation
+│
+├── SLADKG/             # Signature-free Lattice-Based DKG implementation
+│   ├── SLACSS.py       # Main DKG protocol implementation
+│   ├── tongsuo.py      # Tongsuo cryptographic primitives wrapper
+│   ├── secure_rng.py   # Secure random number generation
+│   ├── Tongsuo/        # Tongsuo library directory (cloned separately)
+│   │   └── libcrypto.so # Compiled Tongsuo library (or .dylib/.dll)
+│   ├── tools/          # Utility tools
+│   ├── log/            # Runtime logs directory (auto-generated)
+│   ├── README.md       # SLADKG-specific documentation
+│   └── license         # License file
+│
+├── ADKG/               # Asynchronous Distributed Key Generation BaseLine
+│   ├── adkg/           # Core ADKG implementation modules
+│   ├── apps/           # Application examples and tutorials
+│   ├── benchmark/      # Performance benchmarks
+│   ├── conf/           # Configuration files
+│   ├── pairing/        # Pairing-based cryptography (Rust bindings)
+│   ├── aws/            # AWS deployment scripts
+│   ├── Dockerfile      # Docker configuration
+│   └── README.md       # ADKG-specific documentation
+│
+├── MVBA/               # Multi-Valued Byzantine Agreement
+│   ├── beat/           # BEAT protocol implementation
+│   │   ├── BEAT0/      # BEAT core modules
+│   │   │   └── BEAT/   # Main BEAT implementation
+│   │   └── README.md   # BEAT documentation
+│   └── README.md       # MVBA documentation
+│
+├── NIZK/               # Non-Interactive Zero-Knowledge proofs
+│   ├── proving_mlwe_sample.py      # MLWE sample proof implementation
+│   ├── proving_mlwe_sample.sage.py # SageMath variant
+│   └── README.md       # NIZK documentation
+│
+└── OPRBC/              # Optimistic Reliable Broadcast protocols
+    ├── RBC.py          # Bracha Reliable Broadcast implementation
+    ├── OPRBC.py        # Optimistic Reliable Broadcast implementation
+    ├── run_tests.py    # Test runner
+    └── README.md       # OPRBC documentation
 ```
 
 ## Dependencies
@@ -142,12 +184,18 @@ SLACSS/
 
 ### Security Parameters
 
+**Parameter Set A (default):**
 - **Number of participants (N)**: 6
 - **Threshold (T)**: 2
 - **Sigma_x**: 1.00
 - **Sigma_y**: 18.36 (= √337 × sigma_x)
 - **Slack factor**: 10.0
 - **Bound**: slack_factor × σ_v × √(d × ring_degree)
+
+**Parameter Set B:**
+- **Ring dimension (n)**: 256
+- **Modulus (q)**: 2^32 - 99 (= 4294967197)
+- Other parameters (N, T, sigma_x, sigma_y, slack_factor) remain the same as Parameter Set A
 
 ## Logging
 
@@ -172,4 +220,4 @@ This project makes use of the following open-source libraries and implementation
 
 ## License
 
-This project is licensed under the OpenAtom Open Hardware License, Version 1.0 - see the [license](SLACSS/license) file for details.
+This project is licensed under the OpenAtom Open Hardware License, Version 1.0 - see the [license](SLADKG/license) file for details.

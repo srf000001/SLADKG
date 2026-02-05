@@ -1,10 +1,10 @@
-# SLACSS
+# SLADKG
 
 Signature-free lattice-based distributed key generation / secret sharing demo (Python).
 
 ## Parameter Sets
 
-### Parameter Set A (default in `V3S_DKG.py`)
+### Parameter Set A (default in `SLACSS.py`)
 
 - **Number of participants (N)**: 6
 - **Threshold (T)**: 2
@@ -33,12 +33,12 @@ Signature-free lattice-based distributed key generation / secret sharing demo (P
 - **Python packages**: install all imported packages (at least `numpy`)
 - **Tongsuo**: build Tongsuo and make `libcrypto` discoverable by the Python wrapper
   - Clone and build: `https://github.com/Tongsuo-Project/Tongsuo.git`
-  - Runtime: place `libcrypto.so` in `SLACSS/Tongsuo/` or set `TONGSUO_LIBCRYPTO_PATH`
+  - Runtime: place `libcrypto.so` in `SLADKG/Tongsuo/` or set `TONGSUO_LIBCRYPTO_PATH`
 
 ## How to Run
 
 From the project root:
 
 ```bash
-python3 V3S_DKG.py
+python3 SLACSS.py
 ```

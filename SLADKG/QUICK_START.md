@@ -14,7 +14,7 @@ wsl
 ### 步骤 2: 进入项目目录
 
 ```bash
-cd /mnt/g/2026/0127DSN-USENIX/Paper/仓库/SLACSS
+cd /mnt/g/2026/0127DSN-USENIX/Paper/仓库/SLADKG
 ```
 
 ### 步骤 3: 安装依赖（首次运行需要）
@@ -43,7 +43,7 @@ bash run_dkg.sh
 
 **方法 2: 直接运行**
 ```bash
-python3 V3S_DKG.py
+python3 SLACSS.py
 ```
 
 ## 完整命令序列
@@ -53,14 +53,14 @@ python3 V3S_DKG.py
 wsl
 
 # 2. 进入项目目录
-cd /mnt/g/2026/0127DSN-USENIX/Paper/仓库/SLACSS
+cd /mnt/g/2026/0127DSN-USENIX/Paper/仓库/SLADKG
 
 # 3. 安装依赖（只需一次）
 sudo apt-get update
 sudo apt-get install -y python3-numpy
 
 # 4. 运行程序
-python3 V3S_DKG.py
+python3 SLACSS.py
 ```
 
 ## 预期输出

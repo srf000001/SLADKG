@@ -61,5 +61,5 @@ echo "=========================================="
 echo ""
 
 # 运行主程序
-python3 V3S_DKG.py
+python3 SLACSS.py
 
