@@ -162,9 +162,10 @@ This repository contains multiple implementations related to distributed key gen
 2. **Merkle Tree Construction**: Builds commitment trees for share verification
 3. **Challenge Matrix and Bound Computation**: Generates verification challenges
 4. **Validation Vector Calculation**: Computes verification vectors for share validation
-5. **Network Communication**: Distributed share exchange and verification
-6. **Aggregated Share Generation**: Combines shares from multiple participants
-7. **Global Public Key Generation**: Reconstructs the global public key
+5. **NIZK Proof Generation**: Generates non-interactive zero-knowledge proofs for share validation
+6. **Network Communication**: Distributed share exchange and verification
+7. **Aggregated Share Generation**: Combines shares from multiple participants
+8. **Global Public Key Generation**: Reconstructs the global public key
 
 ### Security Parameters
 
