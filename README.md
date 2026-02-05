@@ -11,6 +11,7 @@ The **SLADKG** project is implemented using Python 3.10.12 and integrates the To
 ### Prerequisites
 
 - Python 3.10.12 or higher
+- Rust 1.84 or higher
 - All required Python packages (see Dependencies section)
 - Tongsuo cryptographic library (see Installation section)
 
